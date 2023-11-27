@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "783646091522",
+    "project_id": "todomedimate-9679e",
+    "storage_bucket": "todomedimate-9679e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:783646091522:android:91d8f40046db4513ecba1b",
+        "android_client_info": {
+          "package_name": "com.example.medication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1RcAxiA2cf5X2x7THcB7WlYNoYsgeIqk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
