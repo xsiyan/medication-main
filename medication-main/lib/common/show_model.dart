@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:medication/Widget/datetime_medicine.dart';
 import 'package:medication/Widget/radiowidget_medicine.dart';
 import 'package:medication/Widget/textfield_bloodpressure.dart';
+import 'package:medication/Widget/textfield_medicine.dart';
 import 'package:medication/constants/appstyle_medicine.dart';
 
 import 'package:medication/model/todomodel_medicine.dart';
@@ -60,7 +61,7 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
             style: AppstyleMedicine.headingTwo,
           ),
           Gap(6),
-          TextFieldBloodPressure(
+          TextFieldMedicine(
             maxLines: 1,
             hintText: 'add medicine name',
             txtController: medicineController,
@@ -71,7 +72,7 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
             style: AppstyleMedicine.headingTwo,
           ),
           Gap(6),
-          TextFieldBloodPressure(
+          TextFieldMedicine(
             maxLines: 1,
             hintText: 'add dosage in mg',
             txtController: dosageController,
@@ -103,7 +104,7 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetMedicine(
                   categColor: Colors.amberAccent,
-                  titleRadio: 'bottle.',
+                  titleRadio: 'bottle',
                   valueInput: 3,
                   onChangeValue: () => ref
                       .read(medicineRadioProvider.notifier)

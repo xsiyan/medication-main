@@ -4,8 +4,11 @@ import 'package:medication/pages/BloodPressure.dart';
 import 'package:medication/pages/BloodSugar.dart';
 import 'package:medication/pages/Medicine.dart';
 
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 class UserMenu extends StatelessWidget {
-  const UserMenu({super.key});
+  const UserMenu({Key? key}) : super(key: key);
 
   void navigateMediPage(BuildContext ctx) {
     Navigator.of(ctx).push(
@@ -40,135 +43,111 @@ class UserMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 200,
-              width: 380,
-              decoration: BoxDecoration(
-                color: Colors.blue.shade200,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(4.0, 4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
+      appBar: AppBar(
+        title: const Text('User Menu'),
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              const Color(0xFF73C8A9),
+              const Color(0xFF4A91D2),
+            ],
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: () {
+                    navigateMediPage(context);
+                  },
+                  icon: Icon(
+                    Icons.medical_services,
+                    size: 50,
+                    color: Colors.white,
                   ),
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(-4.0, -4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        navigateMediPage(context);
-                      },
-                      child: const Text(
-                        'Medicine Page',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  label: Text(
+                    'Medicine Page',
+                    style: GoogleFonts.oxygen(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 150),
+                    primary: Colors.blue[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 200,
-              width: 380,
-              decoration: BoxDecoration(
-                color: Colors.blue.shade200,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(4.0, 4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    navigateBloodSugar(context);
+                  },
+                  icon: Icon(
+                    Icons.favorite_sharp,
+                    size: 50,
+                    color: Colors.white,
                   ),
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(-4.0, -4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        navigateBloodSugar(context);
-                      },
-                      child: const Text(
-                        'Blood Sugar Page',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  label: Text(
+                    'Blood Sugar Page',
+                    style: GoogleFonts.oxygen(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 150),
+                    primary: Colors.blue[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Container(
-              height: 200,
-              width: 380,
-              decoration: BoxDecoration(
-                color: Colors.blue.shade200,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(4.0, 4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
+                ElevatedButton.icon(
+                  onPressed: () {
+                    navigateBloodPressure(context);
+                  },
+                  icon: Icon(
+                    Icons.bloodtype_sharp,
+                    size: 50,
+                    color: Colors.white,
                   ),
-                  BoxShadow(
-                    color: Colors.grey.shade500,
-                    offset: Offset(-4.0, -4.0),
-                    blurRadius: 15.0,
-                    spreadRadius: 1.0,
-                  ),
-                ],
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {
-                        navigateBloodPressure(context);
-                      },
-                      child: const Text(
-                        'Blood Pressure Page',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                  label: Text(
+                    'Blood Pressure Page',
+                    style: GoogleFonts.oxygen(
+                      textStyle: TextStyle(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20,
+                        color: Colors.white,
                       ),
                     ),
-                  ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 150),
+                    primary: Colors.blue[900],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

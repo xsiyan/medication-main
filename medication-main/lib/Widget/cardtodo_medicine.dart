@@ -19,14 +19,14 @@ class CardTodoMedicineWidget extends ConsumerWidget {
       data: (todoData) {
         Color categoryColor = Colors.white;
         final getCategory = todoData[getIndex].type;
-        switch (getCategory) {
-          case 'Pill':
+        switch (getCategory.toLowerCase()) {
+          case 'pill':
             categoryColor = Colors.green;
             break;
-          case 'Syringe':
+          case 'syringe':
             categoryColor = Colors.blue.shade700;
             break;
-          case 'Bottle':
+          case 'bottle':
             categoryColor = Colors.amber.shade700;
             break;
         }
@@ -105,7 +105,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
                               ),
                               Row(
                                 children: [
-                                  Text('Today '),
+                                  Text(todoData[getIndex].dateTask),
                                   Gap(12),
                                   Text(todoData[getIndex].timeTask)
                                 ],

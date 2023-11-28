@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AppstyleMedicine {
-  static const headingTwo = TextStyle(
+  static TextStyle headingTwo = TextStyle(
+    fontFamily: GoogleFonts.oxygen().fontFamily,
     fontSize: 16,
     fontWeight: FontWeight.w600,
     color: Colors.black,

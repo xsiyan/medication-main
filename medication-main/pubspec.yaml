@@ -48,6 +48,7 @@ dependencies:
   flutter_riverpod: ^2.3.6
   firebase_core: ^2.11.0
   cloud_firestore: ^4.13.2
+  google_fonts: ^6.1.0
 
 dev_dependencies:
   flutter_test:

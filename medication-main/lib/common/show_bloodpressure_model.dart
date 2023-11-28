@@ -8,21 +8,17 @@ import 'package:medication/Widget/radiowidget_bloodpressure.dart';
 import 'package:medication/Widget/textfield_bloodpressure.dart';
 import 'package:medication/constants/appstyle_bloodpressure.dart';
 import 'package:medication/model/todomodel_bloodpressure.dart';
-import 'package:medication/provider/date_time_provider.dart';
 import 'package:medication/provider/datetime_provider_bloodpressure.dart';
 import 'package:medication/provider/radioprovider_bloodpressure.dart';
 import 'package:medication/provider/service_bloodpressure.dart';
 
 class AddNewTaskBloodPressureModel extends ConsumerWidget {
   AddNewTaskBloodPressureModel({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
-  // final diastolicController = TextEditingController();
-  // final systolicController = TextEditingController();
-  final TextEditingController diastolicController = TextEditingController();
-  final TextEditingController systolicController = TextEditingController();
-
+  final diastolicController = TextEditingController();
+  final systolicController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateBPProvider);
@@ -57,6 +53,16 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             style: AppstyleBloodPressure.headingOne,
           ),
           Gap(6),
+          // TextField(
+          //   controller: diastolicController,
+          //   maxLines: 1,
+          //   decoration: InputDecoration(
+          //     enabledBorder: InputBorder.none,
+          //     focusedBorder: InputBorder.none,
+          //     hintText: 'add diastolic pressure',
+          //   ),
+          //   onChanged: (value) async {},
+          // ),
           TextFieldBloodPressure(
             maxLines: 1,
             hintText: 'add diastolic pressure',
@@ -64,7 +70,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
           ),
           Gap(20),
           Text(
-            'Systolic',
+            'Systolic Pressure',
             style: AppstyleBloodPressure.headingOne,
           ),
           Gap(6),
@@ -74,7 +80,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             txtController: systolicController,
           ),
           Gap(20),
-          Text('Feeling', style: AppstyleBloodPressure.headingOne),
+          Text('Condition', style: AppstyleBloodPressure.headingOne),
           Row(
             children: [
               Expanded(
@@ -195,21 +201,21 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
                         gender = 'OTHERS';
                         break;
                     }
+
+                    // Update the controllers with the latest input values
                     ref
                         .read(serviceBloodPressureProvider)
                         .addNewTaskBloodPressure(TodoModelBloodPressure(
                           diastolicTask: diastolicController.text,
                           systolicTask: systolicController.text,
                           gender: gender,
-                          dateTask: ref.read(dateProvider),
-                          timeTask: ref.read(timeProvider),
+                          dateTask: dateProv,
+                          timeTask: ref.read(timeBPProvider),
                           isDone: false,
                         ));
-
-                    print('Data is saving');
-
                     diastolicController.clear();
                     systolicController.clear();
+                    // print('Data is saving');
                     ref.read(radioProvider.notifier).update((state) => 0);
                     Navigator.pop(context);
                   },
