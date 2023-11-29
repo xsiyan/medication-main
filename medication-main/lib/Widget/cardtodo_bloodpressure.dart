@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:medication/model/todomodel_bloodpressure.dart';
 import 'package:medication/provider/service_bloodpressure.dart';
 
 class CardTodoListBloodPressureWidget extends ConsumerWidget {
@@ -21,13 +20,13 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
         Color categoryColor = Colors.white;
         final getCategory = todoData[getIndex].gender;
         switch (getCategory?.toLowerCase()) {
-          case 'male':
+          case 'anxious':
             categoryColor = Colors.green;
             break;
-          case 'female':
+          case 'happy':
             categoryColor = Colors.blue.shade700;
             break;
-          case 'others':
+          case 'sad':
             categoryColor = Colors.amber.shade700;
             break;
         }

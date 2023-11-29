@@ -22,15 +22,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  GlobalBloc? globalBloc;
-  // NewEntryBloc? newEntryBloc;
+  // GlobalBloc? globalBloc;
+  // // NewEntryBloc? newEntryBloc;
 
-  @override
-  void initState() {
-    globalBloc = GlobalBloc();
-    // newEntryBloc = NewEntryBloc();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   globalBloc = GlobalBloc();
+  //   // newEntryBloc = NewEntryBloc();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

@@ -25,6 +25,9 @@ import 'package:medication/provider/service_medicine.dart';
 
 import '../provider/datetime_provider_loodsugar.dart';
 
+final TextEditingController sugarController = TextEditingController();
+final TextEditingController descriptionController = TextEditingController();
+
 class AddNewTaskBloodSugarModel extends ConsumerWidget {
   AddNewTaskBloodSugarModel({
     super.key,
@@ -32,8 +35,6 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
 
   // final diastolicController = TextEditingController();
   // final systolicController = TextEditingController();
-  final TextEditingController sugarController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -69,10 +70,16 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
             style: AppstyleBloodSugar.headingThree,
           ),
           Gap(6),
-          TextFieldBloodSugar(
+          TextFormField(
             maxLines: 1,
-            hintText: 'mmol/L',
-            txtController: sugarController,
+            controller: sugarController,
+            keyboardType: TextInputType.number,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'mmol/oL',
+            ),
           ),
           Gap(20),
           Text(
@@ -80,10 +87,16 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
             style: AppstyleBloodSugar.headingThree,
           ),
           Gap(6),
-          TextFieldBloodSugar(
-            maxLines: 2,
-            hintText: 'drescription',
-            txtController: descriptionController,
+          TextFormField(
+            maxLines: 1,
+            controller: descriptionController,
+            keyboardType: TextInputType.text,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'add description',
+            ),
           ),
           Gap(20),
           Text('Mood', style: AppstyleMedicine.headingTwo),
@@ -92,7 +105,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetMedicine(
                   categColor: Colors.green,
-                  titleRadio: 'happy',
+                  titleRadio: 'anxious',
                   valueInput: 1,
                   onChangeValue: () => ref
                       .read(medicineRadioProvider.notifier)
@@ -102,7 +115,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetMedicine(
                   categColor: Colors.blue.shade700,
-                  titleRadio: 'sad',
+                  titleRadio: 'happy',
                   valueInput: 2,
                   onChangeValue: () => ref
                       .read(medicineRadioProvider.notifier)
@@ -112,7 +125,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetMedicine(
                   categColor: Colors.amberAccent,
-                  titleRadio: 'mix',
+                  titleRadio: 'sad',
                   valueInput: 3,
                   onChangeValue: () => ref
                       .read(medicineRadioProvider.notifier)
@@ -201,13 +214,13 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
 
                     switch (getRadioValue) {
                       case 1:
-                        mood = 'HAPPY';
+                        mood = 'ANXIOUS';
                         break;
                       case 2:
-                        mood = 'SAD';
+                        mood = 'HAPPY';
                         break;
                       case 3:
-                        mood = 'MIX';
+                        mood = 'SAD';
                         break;
                     }
 

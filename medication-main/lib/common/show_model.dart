@@ -9,12 +9,14 @@ import 'package:medication/Widget/textfield_medicine.dart';
 import 'package:medication/constants/appstyle_medicine.dart';
 
 import 'package:medication/model/todomodel_medicine.dart';
-import 'package:medication/provider/date_time_provider.dart';
 
 import 'package:medication/provider/datetime_provider_medicine.dart';
 import 'package:medication/provider/radioprovider_medicine.dart';
 
 import 'package:medication/provider/service_medicine.dart';
+
+final TextEditingController medicineController = TextEditingController();
+final TextEditingController dosageController = TextEditingController();
 
 class AddNewTaskMedicineModel extends ConsumerWidget {
   AddNewTaskMedicineModel({
@@ -23,8 +25,6 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
 
   // final diastolicController = TextEditingController();
   // final systolicController = TextEditingController();
-  final TextEditingController medicineController = TextEditingController();
-  final TextEditingController dosageController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,10 +60,16 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
             style: AppstyleMedicine.headingTwo,
           ),
           Gap(6),
-          TextFieldMedicine(
+          TextFormField(
             maxLines: 1,
-            hintText: 'add medicine name',
-            txtController: medicineController,
+            controller: medicineController,
+            keyboardType: TextInputType.text,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'add medicine name',
+            ),
           ),
           Gap(20),
           Text(
@@ -71,10 +77,16 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
             style: AppstyleMedicine.headingTwo,
           ),
           Gap(6),
-          TextFieldMedicine(
+          TextFormField(
             maxLines: 1,
-            hintText: 'add dosage in mg',
-            txtController: dosageController,
+            controller: dosageController,
+            keyboardType: TextInputType.number,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'add dosage in mg',
+            ),
           ),
           Gap(20),
           Text('Type', style: AppstyleMedicine.headingTwo),

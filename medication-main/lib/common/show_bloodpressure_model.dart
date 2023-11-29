@@ -12,12 +12,13 @@ import 'package:medication/provider/datetime_provider_bloodpressure.dart';
 import 'package:medication/provider/radioprovider_bloodpressure.dart';
 import 'package:medication/provider/service_bloodpressure.dart';
 
+final diastolicController = TextEditingController();
+final systolicController = TextEditingController();
+
 class AddNewTaskBloodPressureModel extends ConsumerWidget {
   AddNewTaskBloodPressureModel({
     Key? key,
   }) : super(key: key);
-  final diastolicController = TextEditingController();
-  final systolicController = TextEditingController();
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateBPProvider);
@@ -52,20 +53,16 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             style: AppstyleBloodPressure.headingOne,
           ),
           Gap(6),
-          // TextField(
-          //   controller: diastolicController,
-          //   maxLines: 1,
-          //   decoration: InputDecoration(
-          //     enabledBorder: InputBorder.none,
-          //     focusedBorder: InputBorder.none,
-          //     hintText: 'add diastolic pressure',
-          //   ),
-          //   onChanged: (value) async {},
-          // ),
-          TextFieldBloodPressure(
+          TextFormField(
             maxLines: 1,
-            hintText: 'add diastolic pressure',
-            txtController: diastolicController,
+            controller: diastolicController,
+            keyboardType: TextInputType.number,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'add diastolic pressure',
+            ),
           ),
           Gap(20),
           Text(
@@ -73,19 +70,25 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             style: AppstyleBloodPressure.headingOne,
           ),
           Gap(6),
-          TextFieldBloodPressure(
+          TextFormField(
             maxLines: 1,
-            hintText: 'add systolic pressure',
-            txtController: systolicController,
+            controller: systolicController,
+            keyboardType: TextInputType.number,
+            textCapitalization: TextCapitalization.words,
+            decoration: const InputDecoration(
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              hintText: 'add diastolic pressure',
+            ),
           ),
           Gap(20),
-          Text('Condition', style: AppstyleBloodPressure.headingOne),
+          Text('Mood', style: AppstyleBloodPressure.headingOne),
           Row(
             children: [
               Expanded(
                 child: RadioWidgetBloodPressure(
                   categColor: Colors.green,
-                  titleRadio: 'male',
+                  titleRadio: 'anxious',
                   valueInput: 1,
                   onChangeValue: () =>
                       ref.read(radioProvider.notifier).update((state) => 1),
@@ -94,7 +97,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetBloodPressure(
                   categColor: Colors.blue.shade700,
-                  titleRadio: 'female',
+                  titleRadio: 'happy',
                   valueInput: 2,
                   onChangeValue: () =>
                       ref.read(radioProvider.notifier).update((state) => 2),
@@ -103,7 +106,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
               Expanded(
                 child: RadioWidgetBloodPressure(
                   categColor: Colors.amberAccent,
-                  titleRadio: 'et al.',
+                  titleRadio: 'sad',
                   valueInput: 3,
                   onChangeValue: () =>
                       ref.read(radioProvider.notifier).update((state) => 3),
@@ -191,13 +194,13 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
 
                     switch (getRadioValue) {
                       case 1:
-                        gender = 'MALE';
+                        gender = 'ANXIOUS';
                         break;
                       case 2:
-                        gender = 'FEMALE';
+                        gender = 'HAPPY';
                         break;
                       case 3:
-                        gender = 'OTHERS';
+                        gender = 'SAD';
                         break;
                     }
 
