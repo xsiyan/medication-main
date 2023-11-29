@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class TextFieldMedicine extends StatefulWidget {
-  const TextFieldMedicine({
+class TextFieldBloodSugar extends StatefulWidget {
+  const TextFieldBloodSugar({
     Key? key,
     required this.maxLines,
     required this.hintText,
@@ -13,10 +13,10 @@ class TextFieldMedicine extends StatefulWidget {
   final TextEditingController txtController;
 
   @override
-  _TextFieldMedicineState createState() => _TextFieldMedicineState();
+  _TextFieldBloodSugarState createState() => _TextFieldBloodSugarState();
 }
 
-class _TextFieldMedicineState extends State<TextFieldMedicine> {
+class _TextFieldBloodSugarState extends State<TextFieldBloodSugar> {
   var _textController;
   @override
   void initState() {
@@ -44,7 +44,7 @@ class _TextFieldMedicineState extends State<TextFieldMedicine> {
       ),
       child: TextField(
         controller: _textController,
-        keyboardType: TextInputType.text,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
           enabledBorder: InputBorder.none,
           focusedBorder: InputBorder.none,

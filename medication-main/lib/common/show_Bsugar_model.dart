@@ -1,153 +1,240 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
-import 'package:medication/Widget/date_time_widget.dart';
-import 'package:medication/Widget/textfield_Widget.dart';
-import 'package:medication/provider/date_time_provider.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:medication/Widget/datetime_bloodsugar.dart';
+import 'package:medication/Widget/datetime_medicine.dart';
+import 'package:medication/Widget/radiowidget_bloodsugar.dart';
+import 'package:medication/Widget/radiowidget_medicine.dart';
+import 'package:medication/Widget/textfield_bloodsugar.dart';
+import 'package:medication/Widget/textfield_medicine.dart';
+import 'package:medication/constants/appstyle_bloodsugar.dart';
+import 'package:medication/constants/appstyle_medicine.dart';
+import 'package:medication/model/todomodel_bloodsugar.dart';
 
-class AddSugarTaskModel extends ConsumerWidget {
-  const AddSugarTaskModel({Key? key}) : super(key: key);
+import 'package:medication/model/todomodel_medicine.dart';
+import 'package:medication/provider/date_time_provider.dart';
+
+import 'package:medication/provider/datetime_provider_medicine.dart';
+import 'package:medication/provider/radioprovider_bloodsugar.dart';
+import 'package:medication/provider/radioprovider_medicine.dart';
+import 'package:medication/provider/service_bloodsugar.dart';
+
+import 'package:medication/provider/service_medicine.dart';
+
+import '../provider/datetime_provider_loodsugar.dart';
+
+class AddNewTaskBloodSugarModel extends ConsumerWidget {
+  AddNewTaskBloodSugarModel({
+    super.key,
+  });
+
+  // final diastolicController = TextEditingController();
+  // final systolicController = TextEditingController();
+  final TextEditingController sugarController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final dateProv = ref.watch(dateProvider);
-    return ProviderScope(
-      child: Container(
-        padding: const EdgeInsets.all(30),
-        height: MediaQuery.of(context).size.height * 0.65,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(
-              width: double.infinity,
-              child: Text(
-                'Add New Blood Sugar List',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20,
+    final dateProv = ref.watch(dateBloodSugarProvider);
+    return Container(
+      padding: const EdgeInsets.all(30),
+      height: MediaQuery.of(context).size.height * 0.70,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            child: Text(
+              'New Task Todo',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 22,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black,
+                  color: Colors.black),
+            ),
+          ),
+          Divider(
+            thickness: 1.2,
+            color: Colors.grey.shade200,
+          ),
+          Gap(20),
+          Text(
+            'Sugar Concentration',
+            style: AppstyleBloodSugar.headingThree,
+          ),
+          Gap(6),
+          TextFieldBloodSugar(
+            maxLines: 1,
+            hintText: 'mmol/L',
+            txtController: sugarController,
+          ),
+          Gap(20),
+          Text(
+            'Description',
+            style: AppstyleBloodSugar.headingThree,
+          ),
+          Gap(6),
+          TextFieldBloodSugar(
+            maxLines: 2,
+            hintText: 'drescription',
+            txtController: descriptionController,
+          ),
+          Gap(20),
+          Text('Mood', style: AppstyleMedicine.headingTwo),
+          Row(
+            children: [
+              Expanded(
+                child: RadioWidgetMedicine(
+                  categColor: Colors.green,
+                  titleRadio: 'happy',
+                  valueInput: 1,
+                  onChangeValue: () => ref
+                      .read(medicineRadioProvider.notifier)
+                      .update((state) => 1),
                 ),
               ),
-            ),
-            Divider(
-              thickness: 1.2,
-              color: Colors.grey.shade200,
-            ),
-            const Gap(10),
-            const Text(
-              'Sugar Concentration',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
+              Expanded(
+                child: RadioWidgetMedicine(
+                  categColor: Colors.blue.shade700,
+                  titleRadio: 'sad',
+                  valueInput: 2,
+                  onChangeValue: () => ref
+                      .read(medicineRadioProvider.notifier)
+                      .update((state) => 2),
+                ),
               ),
-            ),
-            const Gap(10),
-            const TextFieldWidget(maxLine: 1, hintText: 'mmol/L'),
-            const Gap(10),
-            const Text(
-              'Notes',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-                color: Colors.black,
+              Expanded(
+                child: RadioWidgetMedicine(
+                  categColor: Colors.amberAccent,
+                  titleRadio: 'mix',
+                  valueInput: 3,
+                  onChangeValue: () => ref
+                      .read(medicineRadioProvider.notifier)
+                      .update((state) => 3),
+                ),
               ),
-            ),
-            const Gap(10),
-            const TextFieldWidget(maxLine: 5, hintText: 'Add Description'),
-            const Gap(10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DateTimeWidget(
-                  titleText: 'Date',
-                  valueText: dateProv,
-                  iconSection: Icons.calendar_today,
-                  onTap: () async {
-                    final getValue = await showDatePicker(
+            ],
+          ),
+          // DATE AND TIME
+          Gap(20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              DateTimeBloodSugarWidget(
+                titleText: 'Date',
+                valueText: dateProv,
+                iconSection: CupertinoIcons.calendar,
+                onTap: () async {
+                  final getValue = await showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
                       firstDate: DateTime(2021),
-                      lastDate: DateTime(2030),
-                    );
-                    if (getValue != null) {
-                      final format = DateFormat.yMd();
-                      ref
-                          .read(dateProvider.notifier)
-                          .update((state) => format.format(getValue));
-                    }
-                  },
-                ),
-                const Gap(22),
-                DateTimeWidget(
-                  titleText: 'Time',
-                  valueText: ref.watch(timeProvider),
-                  iconSection: Icons.access_time,
-                  onTap: () async {
-                    final getTime = await showTimePicker(
-                      context: context,
-                      initialTime: TimeOfDay.now(),
-                    );
-                    if (getTime != null) {
-                      ref
-                          .read(timeProvider.notifier)
-                          .update((state) => getTime.format(context));
-                    }
-                  },
-                ),
-              ],
-            ),
-            const Gap(22),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.blue.shade800,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      side: BorderSide(
-                        color: Colors.blue.shade800,
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      lastDate: DateTime(2025));
+                  if (getValue != null) {
+                    final format = DateFormat.yMd();
+                    ref
+                        .read(dateBloodSugarProvider.notifier)
+                        .update((state) => format.format(getValue));
+                  }
+                },
+              ),
+              Gap(22),
+              DateTimeBloodSugarWidget(
+                titleText: 'Time',
+                valueText: ref.watch(timeBloodSugarProvider),
+                iconSection: CupertinoIcons.clock,
+                onTap: () async {
+                  final getTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+                  if (getTime != null) {
+                    ref
+                        .read(timeBloodSugarProvider.notifier)
+                        .update((state) => getTime.format(context));
+                  }
+                },
+              ),
+            ],
+          ),
+          // BUTTON SECTION
+          Gap(12),
+          Row(
+            children: [
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.white,
+                    foregroundColor: Colors.blue.shade800,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text('Cancel'),
+                    side: BorderSide(color: Colors.blue.shade800),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
+                  onPressed: () => Navigator.pop(context),
+                  child: Text('Cancel'),
                 ),
-                const Gap(20),
-                Expanded(
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade800,
-                      foregroundColor: Colors.white,
-                      elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      side: BorderSide(
-                        color: Colors.blue.shade800,
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+              ),
+              Gap(30),
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue.shade800,
+                    foregroundColor: Colors.white,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    onPressed: () {},
-                    child: const Text('Create'),
+                    padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
+                  onPressed: () {
+                    final getRadioValue = ref.read(medicineRadioProvider);
+                    String mood = '';
+
+                    switch (getRadioValue) {
+                      case 1:
+                        mood = 'HAPPY';
+                        break;
+                      case 2:
+                        mood = 'SAD';
+                        break;
+                      case 3:
+                        mood = 'MIX';
+                        break;
+                    }
+
+                    ref.read(serviceBloodSugarProvider).addNewTaskBloodSugar(
+                        TodoModelBloodSugarPressure(
+                            sugarConcentration: sugarController.text,
+                            description: descriptionController.text,
+                            mood: mood,
+                            dateTask: dateProv,
+                            timeTask: ref.read(timeBloodSugarProvider),
+                            isDone: false));
+
+                    print('Data is saving');
+
+                    sugarController.clear();
+                    descriptionController.clear();
+                    ref
+                        .read(bloodSugarRadioProvider.notifier)
+                        .update((state) => 0);
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Create'),
                 ),
-              ],
-            )
-          ],
-        ),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medication/provider/service_bloodpressure.dart';
 
@@ -17,11 +18,14 @@ class BloodPressure extends ConsumerWidget {
     String currentDate = DateFormat('EEEE, d MMMM').format(now);
     var $ScreenHeight = MediaQuery.of(context).size.height / 100;
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Color(0xFFEFE6CD),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF7D8758),
         foregroundColor: Colors.black,
-        title: const Text('BLOOD PRESSURE'),
+        title: Text(
+          'BLOOD PRESSURE SECTION',
+          style: GoogleFonts.firaSans(fontWeight: FontWeight.bold),
+        ),
         elevation: 0,
         actions: [
           Padding(
@@ -87,7 +91,7 @@ class BloodPressure extends ConsumerWidget {
                     ),
                     child: Text(
                       '+ New Task',
-                      style: TextStyle(color: Colors.grey),
+                      style: GoogleFonts.firaSans(),
                     ),
                   ),
                 ],

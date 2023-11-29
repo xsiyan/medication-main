@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:medication/Widget/cardtodo_medicine.dart';
 import 'package:medication/common/show_model.dart';
@@ -16,11 +17,14 @@ class Medicine extends ConsumerWidget {
     String currentDate = DateFormat('EEEE, d MMMM').format(now);
     var $ScreenHeight = MediaQuery.of(context).size.height / 100;
     return Scaffold(
-      backgroundColor: Colors.grey.shade200,
+      backgroundColor: Color(0xFFEFE6CD),
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFF7D8758),
         foregroundColor: Colors.black,
-        title: const Text('MEDICINE PAGE'),
+        title: Text(
+          'MEDICINE SECTION',
+          style: GoogleFonts.firaSans(fontWeight: FontWeight.bold),
+        ),
         elevation: 0,
         actions: [
           Padding(
@@ -86,7 +90,7 @@ class Medicine extends ConsumerWidget {
                     ),
                     child: Text(
                       '+ New Task',
-                      style: TextStyle(color: Colors.grey),
+                      style: GoogleFonts.firaSans(),
                     ),
                   ),
                 ],

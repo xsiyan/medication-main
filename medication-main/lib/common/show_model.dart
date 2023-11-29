@@ -5,7 +5,6 @@ import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:medication/Widget/datetime_medicine.dart';
 import 'package:medication/Widget/radiowidget_medicine.dart';
-import 'package:medication/Widget/textfield_bloodpressure.dart';
 import 'package:medication/Widget/textfield_medicine.dart';
 import 'package:medication/constants/appstyle_medicine.dart';
 
@@ -208,8 +207,8 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
                           medicineName: medicineController.text,
                           dosage: dosageController.text,
                           type: type,
-                          dateTask: ref.read(dateProvider),
-                          timeTask: ref.read(timeProvider),
+                          dateTask: dateProv,
+                          timeTask: ref.read(timeMedicineProvider),
                           isDone: false,
                         ));
 

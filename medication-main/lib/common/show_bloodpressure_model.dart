@@ -16,7 +16,6 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
   AddNewTaskBloodPressureModel({
     Key? key,
   }) : super(key: key);
-
   final diastolicController = TextEditingController();
   final systolicController = TextEditingController();
   @override
@@ -213,9 +212,10 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
                           timeTask: ref.read(timeBPProvider),
                           isDone: false,
                         ));
+
                     diastolicController.clear();
                     systolicController.clear();
-                    // print('Data is saving');
+                    print('Data is saving');
                     ref.read(radioProvider.notifier).update((state) => 0);
                     Navigator.pop(context);
                   },

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:medication/pages/BloodPressure.dart';
 import 'package:medication/pages/BloodSugar.dart';
 import 'package:medication/pages/Medicine.dart';
-
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserMenu extends StatelessWidget {
@@ -44,7 +42,12 @@ class UserMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('User Menu'),
+        backgroundColor: Color(0xFFE6E1C1),
+        title: Text(
+          'USER MENU',
+          style:
+              GoogleFonts.firaSans(fontWeight: FontWeight.bold, fontSize: 30),
+        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -52,8 +55,8 @@ class UserMenu extends StatelessWidget {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              const Color(0xFF73C8A9),
-              const Color(0xFF4A91D2),
+              const Color(0xFF9CBEC4),
+              const Color(0xFF9CB6D9),
             ],
           ),
         ),
@@ -68,23 +71,23 @@ class UserMenu extends StatelessWidget {
                     navigateMediPage(context);
                   },
                   icon: Icon(
-                    Icons.medical_services,
+                    Icons.medical_services_outlined,
                     size: 50,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   label: Text(
-                    'Medicine Page',
-                    style: GoogleFonts.oxygen(
+                    'MEDICINE PAGE',
+                    style: GoogleFonts.cabin(
                       textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 25,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 150),
-                    primary: Colors.blue[900],
+                    primary: Color(0xFFE6E1C1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -95,23 +98,23 @@ class UserMenu extends StatelessWidget {
                     navigateBloodSugar(context);
                   },
                   icon: Icon(
-                    Icons.favorite_sharp,
+                    Icons.favorite_border_outlined,
                     size: 50,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   label: Text(
-                    'Blood Sugar Page',
-                    style: GoogleFonts.oxygen(
+                    'BLOOD SUGAR PAGE',
+                    style: GoogleFonts.cabin(
                       textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 25,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 150),
-                    primary: Colors.blue[900],
+                    primary: Color(0xFFE6E1C1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
@@ -122,23 +125,23 @@ class UserMenu extends StatelessWidget {
                     navigateBloodPressure(context);
                   },
                   icon: Icon(
-                    Icons.bloodtype_sharp,
+                    Icons.bloodtype_outlined,
                     size: 50,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                   label: Text(
-                    'Blood Pressure Page',
-                    style: GoogleFonts.oxygen(
+                    'BLOOD PRESSURE PAGE',
+                    style: GoogleFonts.cabin(
                       textStyle: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: Colors.white,
+                        fontWeight: FontWeight.w700,
+                        fontSize: 24,
+                        color: Colors.black,
                       ),
                     ),
                   ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 150),
-                    primary: Colors.blue[900],
+                    primary: Color(0xFFE6E1C1),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20.0),
                     ),
