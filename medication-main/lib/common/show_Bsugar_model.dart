@@ -41,7 +41,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
     final dateProv = ref.watch(dateBloodSugarProvider);
     return Container(
       padding: const EdgeInsets.all(30),
-      height: MediaQuery.of(context).size.height * 0.70,
+      height: MediaQuery.of(context).size.height * 0.80,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -52,7 +52,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             child: Text(
-              'New Task Todo',
+              'Blood Sugar List',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 22,
@@ -75,10 +75,18 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
             controller: sugarController,
             keyboardType: TextInputType.number,
             textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
               hintText: 'mmol/oL',
+              filled: true,
+              fillColor: Colors.grey.shade200,
             ),
           ),
           Gap(20),
@@ -90,16 +98,24 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
           TextFormField(
             maxLines: 1,
             controller: descriptionController,
-            keyboardType: TextInputType.text,
+            keyboardType: TextInputType.number,
             textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
               hintText: 'add description',
+              filled: true,
+              fillColor: Colors.grey.shade200,
             ),
           ),
           Gap(20),
-          Text('Mood', style: AppstyleMedicine.headingTwo),
+          Text('What you feel', style: AppstyleMedicine.headingTwo),
           Row(
             children: [
               Expanded(

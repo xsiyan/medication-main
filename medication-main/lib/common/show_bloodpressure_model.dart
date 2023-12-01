@@ -7,8 +7,10 @@ import 'package:medication/Widget/datetime_bloodpressure.dart';
 import 'package:medication/Widget/radiowidget_bloodpressure.dart';
 import 'package:medication/Widget/textfield_bloodpressure.dart';
 import 'package:medication/constants/appstyle_bloodpressure.dart';
+import 'package:medication/main.dart';
 import 'package:medication/model/todomodel_bloodpressure.dart';
 import 'package:medication/provider/datetime_provider_bloodpressure.dart';
+import 'package:medication/provider/datetime_provider_loodsugar.dart';
 import 'package:medication/provider/radioprovider_bloodpressure.dart';
 import 'package:medication/provider/service_bloodpressure.dart';
 
@@ -24,7 +26,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
     final dateProv = ref.watch(dateBPProvider);
     return Container(
       padding: EdgeInsets.all(30),
-      height: MediaQuery.of(context).size.height * 0.70,
+      height: MediaQuery.of(context).size.height * 0.80,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -35,7 +37,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
           SizedBox(
             width: double.infinity,
             child: Text(
-              'New Task Todo',
+              'Blood Pressure List',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 22,
@@ -49,23 +51,6 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
           ),
           Gap(20),
           Text(
-            'Diastolic Pressure',
-            style: AppstyleBloodPressure.headingOne,
-          ),
-          Gap(6),
-          TextFormField(
-            maxLines: 1,
-            controller: diastolicController,
-            keyboardType: TextInputType.number,
-            textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: 'add diastolic pressure',
-            ),
-          ),
-          Gap(20),
-          Text(
             'Systolic Pressure',
             style: AppstyleBloodPressure.headingOne,
           ),
@@ -75,14 +60,47 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             controller: systolicController,
             keyboardType: TextInputType.number,
             textCapitalization: TextCapitalization.words,
-            decoration: const InputDecoration(
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-              hintText: 'add diastolic pressure',
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              hintText: 'add systolic pressure',
+              filled: true,
+              fillColor: Colors.grey.shade200,
             ),
           ),
           Gap(20),
-          Text('Mood', style: AppstyleBloodPressure.headingOne),
+          Text(
+            'Diastolic Pressure',
+            style: AppstyleBloodPressure.headingOne,
+          ),
+          Gap(6),
+          TextFormField(
+            maxLines: 1,
+            controller: diastolicController,
+            keyboardType: TextInputType.number,
+            textCapitalization: TextCapitalization.words,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide.none,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              hintText: 'add diastolic pressure',
+              filled: true,
+              fillColor: Colors.grey.shade200,
+            ),
+          ),
+          Gap(20),
+          Text('What you feel', style: AppstyleBloodPressure.headingOne),
           Row(
             children: [
               Expanded(
@@ -189,6 +207,18 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   onPressed: () {
+                    // final getTime = await showTimePicker(
+                    //   context: context,
+                    //   initialTime: TimeOfDay.now(),
+                    // );
+                    // if (getTime != null) {
+                    //   ref
+                    //       .read(timeBPProvider.notifier)
+                    //       .update((state) => getTime.format(context));
+
+                    //   // Schedule the notification
+                    //   scheduleNotification(getTime);
+                    // }
                     final getRadioValue = ref.read(radioProvider);
                     String gender = '';
 

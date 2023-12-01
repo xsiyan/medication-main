@@ -88,7 +88,9 @@ class BloodSugar extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(16),
                       ),
                       context: context,
-                      builder: (context) => AddNewTaskBloodSugarModel(),
+                      builder: (context) => Container(
+                        child: AddNewTaskBloodSugarModel(),
+                      ),
                     ),
                     child: Text(
                       '+ New Task',

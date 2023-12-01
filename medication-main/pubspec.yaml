@@ -43,12 +43,15 @@ dependencies:
   provider:
   shared_preferences: ^2.2.1
   gap: ^3.0.1
-  flutter_local_notifications:
+  flutter_local_notifications: ^16.2.0
   riverpod: ^2.4.8
   flutter_riverpod: ^2.3.6
   firebase_core: ^2.11.0
   cloud_firestore: ^4.13.2
   google_fonts: ^6.1.0
+  firebase_messaging: ^14.7.6
+  fl_chart: ^0.41.0
+  table_calendar: ^3.0.9
 
 dev_dependencies:
   flutter_test:
