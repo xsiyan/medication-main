@@ -98,7 +98,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
           TextFormField(
             maxLines: 1,
             controller: descriptionController,
-            keyboardType: TextInputType.number,
+            keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.words,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
