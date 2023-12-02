@@ -21,14 +21,14 @@ class CardTodoBloodSugarWidget extends ConsumerWidget {
         Color categoryColor = Colors.white;
         final getCategory = todoData[getIndex].mood;
         switch (getCategory.toLowerCase()) {
-          case 'anxious':
-            categoryColor = Colors.green;
+          case 'dizziness':
+            categoryColor = Colors.brown.shade700;
             break;
-          case 'happy':
-            categoryColor = Colors.blue.shade700;
+          case 'tired/weak':
+            categoryColor = Colors.orange;
             break;
-          case 'sad':
-            categoryColor = Colors.amber.shade700;
+          case 'fatigue':
+            categoryColor = Colors.red;
             break;
         }
         return Container(

@@ -9,6 +9,7 @@ import 'package:medication/Widget/radiowidget_bloodsugar.dart';
 import 'package:medication/Widget/radiowidget_medicine.dart';
 import 'package:medication/Widget/textfield_bloodsugar.dart';
 import 'package:medication/Widget/textfield_medicine.dart';
+import 'package:medication/common/blood_sugar_scaling.dart';
 import 'package:medication/constants/appstyle_bloodsugar.dart';
 import 'package:medication/constants/appstyle_medicine.dart';
 import 'package:medication/model/todomodel_bloodsugar.dart';
@@ -41,7 +42,7 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
     final dateProv = ref.watch(dateBloodSugarProvider);
     return Container(
       padding: const EdgeInsets.all(30),
-      height: MediaQuery.of(context).size.height * 0.80,
+      height: MediaQuery.of(context).size.height * 0.88,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -91,62 +92,41 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
           ),
           Gap(20),
           Text(
-            'Description',
+            'Results',
             style: AppstyleBloodSugar.headingThree,
           ),
           Gap(6),
-          TextFormField(
-            maxLines: 1,
-            controller: descriptionController,
-            keyboardType: TextInputType.text,
-            textCapitalization: TextCapitalization.words,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide.none,
-                borderRadius: BorderRadius.circular(8),
-              ),
-              hintText: 'add description',
-              filled: true,
-              fillColor: Colors.grey.shade200,
-            ),
-          ),
-          Gap(20),
-          Text('What you feel', style: AppstyleMedicine.headingTwo),
-          Row(
+          HealthSugarText(sugar: sugarController.text),
+          Gap(14),
+          Text('Symptomps', style: AppstyleMedicine.headingTwo),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.green,
-                  titleRadio: 'anxious',
-                  valueInput: 1,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 1),
-                ),
+              RadioWidgetMedicine(
+                categColor: Colors.brown.shade700,
+                titleRadio: 'dizziness',
+                valueInput: 1,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 1),
               ),
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.blue.shade700,
-                  titleRadio: 'happy',
-                  valueInput: 2,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 2),
-                ),
+              SizedBox(height: 2), // Adjust the spacing between radio choices
+              RadioWidgetMedicine(
+                categColor: Colors.orange,
+                titleRadio: 'tired/weak',
+                valueInput: 2,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 2),
               ),
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.amberAccent,
-                  titleRadio: 'sad',
-                  valueInput: 3,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 3),
-                ),
+              SizedBox(height: 2), // Adjust the spacing between radio choices
+              RadioWidgetMedicine(
+                categColor: Colors.red,
+                titleRadio: 'fatigue',
+                valueInput: 3,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 3),
               ),
             ],
           ),
@@ -230,13 +210,13 @@ class AddNewTaskBloodSugarModel extends ConsumerWidget {
 
                     switch (getRadioValue) {
                       case 1:
-                        mood = 'ANXIOUS';
+                        mood = 'DIZZINESS';
                         break;
                       case 2:
-                        mood = 'HAPPY';
+                        mood = 'TIRED/WEAK';
                         break;
                       case 3:
-                        mood = 'SAD';
+                        mood = 'FATIGUE';
                         break;
                     }
 

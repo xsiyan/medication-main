@@ -19,15 +19,15 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
       data: (todoData) {
         Color categoryColor = Colors.white;
         final getCategory = todoData[getIndex].gender;
-        switch (getCategory?.toLowerCase()) {
-          case 'anxious':
-            categoryColor = Colors.green;
+        switch (getCategory.toLowerCase()) {
+          case 'chest pain':
+            categoryColor = Colors.red;
             break;
-          case 'happy':
-            categoryColor = Colors.blue.shade700;
+          case 'dizziness':
+            categoryColor = Colors.brown.shade700;
             break;
-          case 'sad':
-            categoryColor = Colors.amber.shade700;
+          case 'fatigue':
+            categoryColor = Colors.amberAccent;
             break;
         }
         return Container(
@@ -43,8 +43,8 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
               Container(
                 decoration: BoxDecoration(
                   color: categoryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: const Radius.circular(12),
                     bottomLeft: Radius.circular(12),
                   ),
                 ),
@@ -60,7 +60,7 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: IconButton(
-                          icon: Icon(CupertinoIcons.delete),
+                          icon: const Icon(CupertinoIcons.delete),
                           onPressed: () => ref
                               .read(serviceBloodPressureProvider)
                               .deleteBloodPressureTask(
@@ -86,7 +86,7 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
                           scale: 1.5,
                           child: Checkbox(
                             activeColor: Colors.blue.shade800,
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             value: todoData[getIndex].isDone,
                             onChanged: (value) {
                               ref
@@ -96,9 +96,10 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
                             },
                           ),
                         ),
+                        // subtitleTextStyle: ,
                       ),
                       Transform.translate(
-                        offset: Offset(0, -12),
+                        offset: const Offset(0, -12),
                         child: Container(
                           child: Column(
                             children: [
@@ -109,7 +110,7 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
                               Row(
                                 children: [
                                   Text(todoData[getIndex].dateTask),
-                                  Gap(12),
+                                  const Gap(12),
                                   Text(todoData[getIndex].timeTask)
                                 ],
                               )
@@ -128,7 +129,7 @@ class CardTodoListBloodPressureWidget extends ConsumerWidget {
       error: (error, stacktrace) => Center(
         child: Text(stacktrace.toString()),
       ),
-      loading: () => Center(
+      loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
     );

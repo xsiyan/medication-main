@@ -43,8 +43,8 @@ class CardTodoMedicineWidget extends ConsumerWidget {
               Container(
                 decoration: BoxDecoration(
                   color: categoryColor,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(12),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: const Radius.circular(12),
                     bottomLeft: Radius.circular(12),
                   ),
                 ),
@@ -60,7 +60,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
                       ListTile(
                         contentPadding: EdgeInsets.zero,
                         leading: IconButton(
-                          icon: Icon(CupertinoIcons.delete),
+                          icon: const Icon(CupertinoIcons.delete),
                           onPressed: () => ref
                               .read(serviceMedicineProvider)
                               .deleteMedicineTask(todoData[getIndex].docID),
@@ -83,7 +83,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
                           scale: 1.5,
                           child: Checkbox(
                             activeColor: Colors.blue.shade800,
-                            shape: CircleBorder(),
+                            shape: const CircleBorder(),
                             value: todoData[getIndex].isDone,
                             onChanged: (value) {
                               ref
@@ -95,7 +95,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
                         ),
                       ),
                       Transform.translate(
-                        offset: Offset(0, -12),
+                        offset: const Offset(0, -12),
                         child: Container(
                           child: Column(
                             children: [
@@ -106,7 +106,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
                               Row(
                                 children: [
                                   Text(todoData[getIndex].dateTask),
-                                  Gap(12),
+                                  const Gap(12),
                                   Text(todoData[getIndex].timeTask)
                                 ],
                               )
@@ -125,7 +125,7 @@ class CardTodoMedicineWidget extends ConsumerWidget {
       error: (error, stacktrace) => Center(
         child: Text(stacktrace.toString()),
       ),
-      loading: () => Center(
+      loading: () => const Center(
         child: CircularProgressIndicator(),
       ),
     );

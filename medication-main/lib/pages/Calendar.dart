@@ -36,7 +36,7 @@ class _UserCalendarState extends State<UserCalendar> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'INSIGHTS',
+          'CALENDAR',
           style: GoogleFonts.firaSans(
             fontWeight: FontWeight.bold,
             fontSize: 30,

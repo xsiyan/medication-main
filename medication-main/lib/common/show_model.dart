@@ -54,7 +54,6 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
             thickness: 1.2,
             color: Colors.grey.shade200,
           ),
-          Gap(20),
           Text(
             'Medicine Name',
             style: AppstyleMedicine.headingTwo,
@@ -79,7 +78,6 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
               fillColor: Colors.grey.shade200,
             ),
           ),
-          Gap(20),
           Text(
             'Dosage',
             style: AppstyleMedicine.headingTwo,
@@ -104,44 +102,40 @@ class AddNewTaskMedicineModel extends ConsumerWidget {
               fillColor: Colors.grey.shade200,
             ),
           ),
-          Gap(20),
-          Text('Type', style: AppstyleMedicine.headingTwo),
-          Row(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.green,
-                  titleRadio: 'pill',
-                  valueInput: 1,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 1),
-                ),
+              RadioWidgetMedicine(
+                categColor: Colors.green,
+                titleRadio: 'tablet',
+                valueInput: 1,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 1),
               ),
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.blue.shade700,
-                  titleRadio: 'syringe',
-                  valueInput: 2,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 2),
-                ),
+              const SizedBox(
+                  height: 1), // Adjust the spacing between radio choices
+              RadioWidgetMedicine(
+                categColor: Colors.orange,
+                titleRadio: 'syringe',
+                valueInput: 2,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 2),
               ),
-              Expanded(
-                child: RadioWidgetMedicine(
-                  categColor: Colors.amberAccent,
-                  titleRadio: 'bottle',
-                  valueInput: 3,
-                  onChangeValue: () => ref
-                      .read(medicineRadioProvider.notifier)
-                      .update((state) => 3),
-                ),
+              const SizedBox(
+                  height: 1), // Adjust the spacing between radio choices
+              RadioWidgetMedicine(
+                categColor: Colors.amberAccent,
+                titleRadio: 'bottle',
+                valueInput: 3,
+                onChangeValue: () => ref
+                    .read(medicineRadioProvider.notifier)
+                    .update((state) => 3),
               ),
             ],
           ),
           // DATE AND TIME
-          Gap(20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

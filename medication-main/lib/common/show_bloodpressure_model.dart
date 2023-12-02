@@ -6,6 +6,8 @@ import 'package:intl/intl.dart';
 import 'package:medication/Widget/datetime_bloodpressure.dart';
 import 'package:medication/Widget/radiowidget_bloodpressure.dart';
 import 'package:medication/Widget/textfield_bloodpressure.dart';
+import 'package:medication/common/blood_pressure_scaling.dart';
+import 'package:medication/common/show_Bsugar_model.dart';
 import 'package:medication/constants/appstyle_bloodpressure.dart';
 import 'package:medication/main.dart';
 import 'package:medication/model/todomodel_bloodpressure.dart';
@@ -21,12 +23,13 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
   AddNewTaskBloodPressureModel({
     Key? key,
   }) : super(key: key);
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final dateProv = ref.watch(dateBPProvider);
     return Container(
-      padding: EdgeInsets.all(30),
-      height: MediaQuery.of(context).size.height * 0.80,
+      padding: const EdgeInsets.all(30),
+      height: MediaQuery.of(context).size.height * 0.90,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
@@ -34,7 +37,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
+          const SizedBox(
             width: double.infinity,
             child: Text(
               'Blood Pressure List',
@@ -49,12 +52,12 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
             thickness: 1.2,
             color: Colors.grey.shade200,
           ),
-          Gap(20),
+
           Text(
             'Systolic Pressure',
             style: AppstyleBloodPressure.headingOne,
           ),
-          Gap(6),
+
           TextFormField(
             maxLines: 1,
             controller: systolicController,
@@ -74,12 +77,15 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
               fillColor: Colors.grey.shade200,
             ),
           ),
-          Gap(20),
+          // Text(
+          //   determineHealthStatus(combinedController.text),
+          // ),
+
           Text(
             'Diastolic Pressure',
             style: AppstyleBloodPressure.headingOne,
           ),
-          Gap(6),
+
           TextFormField(
             maxLines: 1,
             controller: diastolicController,
@@ -99,41 +105,45 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
               fillColor: Colors.grey.shade200,
             ),
           ),
-          Gap(20),
-          Text('What you feel', style: AppstyleBloodPressure.headingOne),
-          Row(
+
+          Text('Results', style: AppstyleBloodPressure.headingOne),
+          HealthStatusText(
+              diastolic: diastolicController.text,
+              systolic: systolicController.text),
+          const Gap(13),
+          Text('Symptomps', style: AppstyleBloodPressure.headingOne),
+          const Gap(15),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Expanded(
-                child: RadioWidgetBloodPressure(
-                  categColor: Colors.green,
-                  titleRadio: 'anxious',
-                  valueInput: 1,
-                  onChangeValue: () =>
-                      ref.read(radioProvider.notifier).update((state) => 1),
-                ),
+              RadioWidgetBloodPressure(
+                categColor: Colors.red,
+                titleRadio: 'chest pain',
+                valueInput: 1,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 1),
               ),
-              Expanded(
-                child: RadioWidgetBloodPressure(
-                  categColor: Colors.blue.shade700,
-                  titleRadio: 'happy',
-                  valueInput: 2,
-                  onChangeValue: () =>
-                      ref.read(radioProvider.notifier).update((state) => 2),
-                ),
+              const SizedBox(
+                  height: 2), // Adjust the spacing between radio choices
+              RadioWidgetBloodPressure(
+                categColor: Colors.brown.shade700,
+                titleRadio: 'dizziness',
+                valueInput: 2,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 2),
               ),
-              Expanded(
-                child: RadioWidgetBloodPressure(
-                  categColor: Colors.amberAccent,
-                  titleRadio: 'sad',
-                  valueInput: 3,
-                  onChangeValue: () =>
-                      ref.read(radioProvider.notifier).update((state) => 3),
-                ),
+              const SizedBox(
+                  height: 2), // Adjust the spacing between radio choices
+              RadioWidgetBloodPressure(
+                categColor: Colors.amberAccent,
+                titleRadio: 'fatigue',
+                valueInput: 3,
+                onChangeValue: () =>
+                    ref.read(radioProvider.notifier).update((state) => 3),
               ),
             ],
           ),
           // DATE AND TIME
-          Gap(20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -155,7 +165,7 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
                   }
                 },
               ),
-              Gap(22),
+              const Gap(30),
               DateTimeBloodPressureWidget(
                 titleText: 'Time',
                 valueText: ref.watch(timeBPProvider),
@@ -174,8 +184,8 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
               ),
             ],
           ),
+          const Gap(12),
           // BUTTON SECTION
-          Gap(12),
           Row(
             children: [
               Expanded(
@@ -191,10 +201,10 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(vertical: 14),
                   ),
                   onPressed: () => Navigator.pop(context),
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
               ),
-              Gap(30),
+              const Gap(30),
               Expanded(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -224,13 +234,13 @@ class AddNewTaskBloodPressureModel extends ConsumerWidget {
 
                     switch (getRadioValue) {
                       case 1:
-                        gender = 'ANXIOUS';
+                        gender = 'CHEST PAIN';
                         break;
                       case 2:
-                        gender = 'HAPPY';
+                        gender = 'DIZZINESS';
                         break;
                       case 3:
-                        gender = 'SAD';
+                        gender = 'FATIGUE';
                         break;
                     }
 
